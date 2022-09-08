@@ -25,10 +25,41 @@ function App() {
   }
 
   function submitPizza (pizza) {
+
+    // patch existing pizza
     if (pizza.id) {
-
-    } else {
-
+      fetch(`http://localhost:3001/pizzas/${pizza.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pizza),
+      })
+      .then(r => r.json())
+      .then(patch => {
+        const fixAry = pizzaAry.map(pizza => {
+          if (pizza.id === patch.id) return patch;
+          else return pizza;
+        })
+        setPizzaAry(fixAry);
+        setPizzaToEdit(initPizza);
+      });
+    }
+    
+    // else post new pizza
+    else {
+      fetch(`http://localhost:3001/pizzas`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pizza),
+      })
+      .then(r => r.json())
+      .then(post => {
+        setPizzaAry([...pizzaAry, post]);
+        setPizzaToEdit(initPizza);
+      })
     };
   }
 
