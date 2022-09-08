@@ -8,7 +8,7 @@ function App() {
   const initPizza = {
     topping: '',
     size: '',
-    vegetarial: '',
+    vegetarian: '',
   }
 
   const [pizzaAry, setPizzaAry] = useState([]);

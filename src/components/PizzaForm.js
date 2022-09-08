@@ -54,6 +54,7 @@ function PizzaForm({ pizzaToEdit, submitPizza }) {
               type="radio"
               name="vegetarian"
               value="Vegetarian"
+              checked={formPizza.vegetarian}
               onChange={handleChange}
             />
             <label className="form-check-label">Vegetarian</label>
@@ -64,6 +65,7 @@ function PizzaForm({ pizzaToEdit, submitPizza }) {
               type="radio"
               name="vegetarian"
               value="Not Vegetarian"
+              checked={!formPizza.vegetarian}
               onChange={handleChange}
             />
             <label className="form-check-label">Not Vegetarian</label>
