@@ -1,10 +1,10 @@
 import React from "react";
 import Pizza from "./Pizza";
 
-function PizzaList({ pizzaAry }) {
+function PizzaList({ pizzaAry, onClickEdit }) {
   const pizzaListings = pizzaAry.map(pizza => {
     return (
-      <Pizza pizza={pizza} />
+      <Pizza key={pizza.id} pizza={pizza} onClickEdit={onClickEdit} />
     )
   })
   return (

@@ -5,7 +5,14 @@ import PizzaList from "./PizzaList";
 
 function App() {
 
+  const initPizza = {
+    topping: '',
+    size: '',
+    vegetarial: '',
+  }
+
   const [pizzaAry, setPizzaAry] = useState([]);
+  const [pizzaToEdit, setPizzaToEdit] = useState(initPizza);
 
   useEffect(() => {
     fetch(`http://localhost:3001/pizzas`)
@@ -13,11 +20,23 @@ function App() {
     .then(data => setPizzaAry(data));
   }, []);
 
+  function editPizza (pizza) {
+    setPizzaToEdit(pizza);
+  }
+
+  function submitPizza (pizza) {
+    if (pizza.id) {
+
+    } else {
+
+    };
+  }
+
   return (
     <>
       <Header />
-      <PizzaForm />
-      <PizzaList pizzaAry={pizzaAry} />
+      <PizzaForm pizzaToEdit={pizzaToEdit} submitPizza={submitPizza} />
+      <PizzaList pizzaAry={pizzaAry} onClickEdit={editPizza} />
     </>
   );
 }
